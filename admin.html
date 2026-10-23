@@ -1,0 +1,764 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milky Taste Eatery | Admin Dashboard</title>
+
+    <style>
+        :root {
+            --bg: #101114;
+            --panel: #191b21;
+            --panel-light: #22252d;
+            --border: #30333d;
+            --text: #f5f5f7;
+            --muted: #a0a4b1;
+            --accent: #f5b544;
+            --green: #49d49d;
+            --red: #ff6b6b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        button, input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 22px 5%;
+            background: var(--panel);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand h1 {
+            font-size: 22px;
+            color: var(--accent);
+        }
+
+        .brand p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--red);
+        }
+
+        .status-dot.online {
+            background: var(--green);
+        }
+
+        main {
+            max-width: 1400px;
+            padding: 32px 5%;
+            margin: auto;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 24px;
+        }
+
+        .panel h3 {
+            margin-bottom: 10px;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .key-form {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .key-form input {
+            flex: 1;
+            min-width: 0;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 13px 15px;
+            color: var(--text);
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+        }
+
+        .btn {
+            padding: 12px 17px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #19140a;
+        }
+
+        .btn-secondary {
+            background: var(--panel-light);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+            font-size: 13px;
+        }
+
+        .message.error {
+            display: block;
+            background: #351d22;
+            color: #ffb1b1;
+            border: 1px solid #693039;
+        }
+
+        .message.success {
+            display: block;
+            background: #173329;
+            color: #9aefc7;
+            border: 1px solid #285c45;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 23px;
+            border-radius: 14px;
+        }
+
+        .stat-card p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card h3 {
+            font-size: 30px;
+            color: var(--accent);
+            overflow-wrap: anywhere;
+        }
+
+        .table-panel {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .table-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table-heading p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 850px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        th {
+            color: var(--muted);
+            background: #1d1f26;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        td {
+            overflow-wrap: anywhere;
+            max-width: 280px;
+        }
+
+        tbody tr:hover {
+            background: var(--panel-light);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #34303a;
+            color: #f3d9a4;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 11px;
+            text-transform: capitalize;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        @media (max-width: 650px) {
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            main {
+                padding: 25px 4%;
+            }
+
+            .page-heading h2 {
+                font-size: 23px;
+            }
+
+            .key-form {
+                flex-direction: column;
+            }
+
+            .key-form .btn {
+                width: 100%;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 18px;
+            }
+
+            .stat-card h3 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <h1>Milky Taste Eatery</h1>
+        <p>Restaurant Management System</p>
+    </div>
+
+    <div class="status">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="connectionStatus">Not connected</span>
+    </div>
+</header>
+
+<main>
+    <section class="page-heading">
+        <h2>Admin Dashboard</h2>
+        <p>Manage and monitor customer orders from one place.</p>
+    </section>
+
+    <!-- ADMIN AUTHENTICATION -->
+    <section class="panel" id="loginPanel">
+        <h3>Admin Authentication</h3>
+        <p class="muted">
+            Enter the admin API key configured on your server
+            to retrieve customer orders.
+        </p>
+
+        <form class="key-form" id="keyForm">
+            <input
+                type="password"
+                id="adminKeyInput"
+                placeholder="Enter your admin API key"
+                autocomplete="current-password"
+                required
+            >
+
+            <button class="btn btn-primary" id="connectButton" type="submit">
+                Connect
+            </button>
+        </form>
+
+        <div class="message" id="tableError" role="alert"></div>
+    </section>
+
+    <!-- ORDER STATISTICS -->
+    <section class="stats">
+        <article class="stat-card">
+            <p>Total Orders</p>
+            <h3 id="totalOrders">—</h3>
+        </article>
+
+        <article class="stat-card">
+            <p>Pending Orders</p>
+            <h3 id="pendingOrders">—</h3>
+        </article>
+
+        <article class="stat-card">
+            <p>Completed Orders</p>
+            <h3 id="completedOrders">—</h3>
+        </article>
+    </section>
+
+    <!-- ORDERS TABLE -->
+    <section class="panel table-panel">
+        <div class="table-heading">
+            <div>
+                <h3>Customer Orders</h3>
+                <p id="lastUpdated">Connect to load orders.</p>
+            </div>
+
+            <button
+                class="btn btn-secondary"
+                id="refreshButton"
+                type="button"
+                disabled
+            >
+                Refresh Orders
+            </button>
+        </div>
+
+        <div class="table-wrap">
+            <table id="orders-table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Phone</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody id="ordersBody">
+                    <tr>
+                        <td colspan="7" class="empty">
+                            Enter your admin key to load orders.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<footer>
+    &copy; <span id="year"></span> Milky Taste Eatery · Admin Dashboard
+</footer>
+
+<script>
+    "use strict";
+
+    // API endpoint configured in your Express server.
+    const ORDERS_API = "/api/admin/orders";
+
+    // The key stays in memory and is not saved in localStorage.
+    let adminKey = "";
+    let currentOrders = [];
+
+    const $ = (id) => document.getElementById(id);
+
+    $("year").textContent = new Date().getFullYear();
+
+    function showTableError(message, type = "error") {
+        const element = $("tableError");
+
+        element.textContent = message;
+        element.className = "message " + type;
+    }
+
+    function clearTableError() {
+        const element = $("tableError");
+        element.textContent = "";
+        element.className = "message";
+    }
+
+    function setConnectionStatus(connected) {
+        $("statusDot").classList.toggle("online", connected);
+        $("connectionStatus").textContent =
+            connected ? "Connected" : "Not connected";
+    }
+
+    function formatMoney(value) {
+        if (value === null || value === undefined || value === "") {
+            return "—";
+        }
+
+        if (typeof value === "number") {
+            return "₦" + value.toLocaleString("en-NG");
+        }
+
+        return String(value);
+    }
+
+    function formatDate(value) {
+        if (!value) return "—";
+
+        const date = new Date(value);
+
+        if (Number.isNaN(date.getTime())) {
+            return String(value);
+        }
+
+        return date.toLocaleString();
+    }
+
+    function getCustomerName(order) {
+        if (order.customerName) return order.customerName;
+        if (order.customer && typeof order.customer === "object") {
+            return order.customer.name || "N/A";
+        }
+
+        return order.name || order.customer || "N/A";
+    }
+
+    function getCustomerPhone(order) {
+        if (order.phone) return order.phone;
+        if (order.customerPhone) return order.customerPhone;
+
+        if (order.customer && typeof order.customer === "object") {
+            return order.customer.phone || "N/A";
+        }
+
+        return "N/A";
+    }
+
+    function getOrderItems(order) {
+        const items = order.items ?? order.cart ?? order.products;
+
+        if (!items) return "N/A";
+
+        if (Array.isArray(items)) {
+            return items.map(item => {
+                if (typeof item === "string") return item;
+
+                const name = item.name || item.title || item.productName || "Item";
+                const quantity = item.quantity ?? item.qty ?? 1;
+
+                return `${name} × ${quantity}`;
+            }).join(", ") || "No items";
+        }
+
+        if (typeof items === "object") {
+            return Object.entries(items).map(([name, quantity]) =>
+                `${name} × ${quantity}`
+            ).join(", ");
+        }
+
+        return String(items);
+    }
+
+    function getOrderTotal(order) {
+        return order.total ??
+            order.totalPrice ??
+            order.amount ??
+            order.grandTotal ??
+            null;
+    }
+
+    function getOrderStatus(order) {
+        return String(order.status || order.orderStatus || "Pending");
+    }
+
+    function createCell(value) {
+        const cell = document.createElement("td");
+        cell.textContent = String(value ?? "N/A");
+        return cell;
+    }
+
+    function renderOrders(orders) {
+        const body = $("ordersBody");
+        body.replaceChildren();
+
+        if (orders.length === 0) {
+            const row = document.createElement("tr");
+            const cell = document.createElement("td");
+
+            cell.colSpan = 7;
+            cell.className = "empty";
+            cell.textContent = "No customer orders found.";
+
+            row.appendChild(cell);
+            body.appendChild(row);
+        }
+
+        orders.forEach(order => {
+            const row = document.createElement("tr");
+
+            row.appendChild(createCell(
+                order.id ?? order._id ?? order.orderId ?? "N/A"
+            ));
+
+            row.appendChild(createCell(getCustomerName(order)));
+            row.appendChild(createCell(getCustomerPhone(order)));
+            row.appendChild(createCell(getOrderItems(order)));
+            row.appendChild(createCell(formatMoney(getOrderTotal(order))));
+
+            const statusCell = document.createElement("td");
+            const badge = document.createElement("span");
+
+            badge.className = "badge";
+            badge.textContent = getOrderStatus(order);
+            statusCell.appendChild(badge);
+            row.appendChild(statusCell);
+
+            row.appendChild(createCell(
+                formatDate(order.createdAt ?? order.date ?? order.timestamp)
+            ));
+
+            body.appendChild(row);
+        });
+
+        $("totalOrders").textContent = orders.length;
+
+        $("pendingOrders").textContent = orders.filter(order => {
+            const status = getOrderStatus(order).toLowerCase();
+            return ["pending", "processing", "new"].includes(status);
+        }).length;
+
+        $("completedOrders").textContent = orders.filter(order => {
+            const status = getOrderStatus(order).toLowerCase();
+            return ["completed", "delivered", "complete"].includes(status);
+        }).length;
+
+        $("lastUpdated").textContent =
+            "Last updated: " + new Date().toLocaleString();
+    }
+
+    async function loadOrders(initial = false) {
+        if (!adminKey) {
+            showTableError("Enter your admin API key first.");
+            return;
+        }
+
+        const refreshButton = $("refreshButton");
+        const connectButton = $("connectButton");
+
+        refreshButton.disabled = true;
+        connectButton.disabled = true;
+        refreshButton.textContent = "Loading...";
+        connectButton.textContent = "Connecting...";
+
+        clearTableError();
+
+        try {
+            const response = await fetch(ORDERS_API, {
+                method: "GET",
+                headers: {
+                    "x-admin-api-key": adminKey,
+                    "Accept": "application/json"
+                },
+                cache: "no-store"
+            });
+
+            let data;
+
+            try {
+                data = await response.json();
+            } catch {
+                throw new Error(
+                    "The server did not return valid JSON. Check your Express route."
+                );
+            }
+
+            console.log("Orders API response:", {
+                status: response.status,
+                success: data.success,
+                count: data.count,
+                ordersIsArray: Array.isArray(data.orders)
+            });
+
+            if (!response.ok) {
+                if (response.status === 401) {
+                    throw new Error(
+                        "Admin key rejected. Check the key configured in your server."
+                    );
+                }
+
+                if (response.status === 404) {
+                    throw new Error(
+                        "Orders API route not found. Check /api/admin/orders in server.js."
+                    );
+                }
+
+                throw new Error(
+                    data.error || `Server error: ${response.status}`
+                );
+            }
+
+            const orders = Array.isArray(data)
+                ? data
+                : data.orders;
+
+            if (!Array.isArray(orders)) {
+                throw new Error(
+                    "The server responded, but its response has no orders array."
+                );
+            }
+
+            currentOrders = orders;
+            renderOrders(currentOrders);
+            setConnectionStatus(true);
+
+            showTableError(
+                `Successfully connected. ${orders.length} order(s) loaded.`,
+                "success"
+            );
+
+            $("refreshButton").disabled = false;
+
+            // Clear the key input after a successful connection.
+            // The key remains in memory for refresh requests.
+            $("adminKeyInput").value = "";
+
+        } catch (error) {
+            console.error("Orders loading failed:", error);
+
+            setConnectionStatus(false);
+            showTableError(error.message || "Could not load orders.");
+
+            if (initial) {
+                $("ordersBody").innerHTML = `
+                    <tr>
+                        <td colspan="7" class="empty">
+                            Could not load orders. Check the error above.
+                        </td>
+                    </tr>
+                `;
+            }
+        } finally {
+            refreshButton.textContent = "Refresh Orders";
+            connectButton.textContent = "Connect";
+
+            refreshButton.disabled = !adminKey || !currentOrders;
+            connectButton.disabled = false;
+        }
+    }
+
+    $("keyForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const enteredKey = $("adminKeyInput").value.trim();
+
+        if (!enteredKey) {
+            showTableError("Please enter your admin API key.");
+            $("adminKeyInput").focus();
+            return;
+        }
+
+        adminKey = enteredKey;
+        await loadOrders(true);
+    });
+
+    $("refreshButton").addEventListener("click", function() {
+        loadOrders(false);
+    });
+</script>
+
+</body>
+</html>
+```

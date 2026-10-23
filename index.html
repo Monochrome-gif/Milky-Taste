@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Milky Taste Eatery | Fast Food, Dining &amp; Milkshakes in Nnewi</title>
+<meta name="description" content="Milky Taste Eatery in Otolo, Nnewi: African continental dishes, quick bites, small chops, drinks and milkshakes. Dine-in, takeout, delivery and drive-through. Open daily 8:00 AM – 10:30 PM.">
+<meta name="theme-color" content="#FFF5E6">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="Milky Taste Eatery – Nnewi">
+<meta property="og:description" content="African continental dishes, quick bites, small chops, drinks and milkshakes. Dine-in, takeout, delivery and drive-through. Open every day, 8:00 AM – 10:30 PM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Milky Taste Eatery",
+  "alternateName": "Milky Taste",
+  "servesCuisine": ["African", "Fast food", "Milkshakes"],
+  "telephone": "+234 903 791 1482",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "No. 1, Obiakwu Okofia, Otolo",
+    "addressLocality": "Nnewi",
+    "addressRegion": "Anambra State",
+    "addressCountry": "NG"
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "08:00",
+    "closes": "22:30"
+  }],
+  "sameAs": ["https://www.instagram.com/milkytasteeatery/"]
+}
+</script>
+
+<style>
+/* ========== Tokens & base ========== */
+:root{
+  --cream:#FFF5E6; --milk:#FFFDF8; --vanilla:#F8E6BF;
+  --choco:#3B2017; --choco2:#6C4635; --ink:#2A1810;
+  --berry:#FF4F7B; --berryd:#D92D5E; --sun:#FFC53D; --mint:#4FCFAA;
+  --line:rgba(59,32,23,.1); --r:24px;
+  --shadow:0 22px 40px -22px rgba(59,32,23,.45);
+  --fd:'Fredoka',system-ui,sans-serif;
+  --fb:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--fb);font-size:17px;line-height:1.65;color:var(--ink);
+  background:linear-gradient(180deg,#FFF5E6 0%,#FFEBD0 45%,#FFF5E6 100%);overflow-x:hidden}
+h1,h2,h3{font-family:var(--fd);color:var(--choco);line-height:1.05;margin:0}
+p,ul,address{margin:0}
+ul{padding:0;list-style:none}
+address{font-style:normal}
+a{color:inherit}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--berry);outline-offset:3px;border-radius:8px}
+.skip{position:fixed;left:12px;top:-60px;z-index:100;background:var(--choco);color:var(--cream);padding:.6rem 1rem;border-radius:10px;text-decoration:none}
+.skip:focus{top:12px}
+.wrap{width:min(1120px,calc(100% - 40px));margin-inline:auto}
+
+main{overflow-x:clip}
+#scene{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+html.no-webgl #scene{display:none}
+.progress{position:fixed;top:0;left:0;height:4px;width:100%;z-index:60;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--berry),var(--sun))}
+
+/* ========== Buttons ========== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.9rem 1.5rem;border-radius:999px;
+  font-family:var(--fd);font-weight:600;font-size:1.05rem;text-decoration:none;border:0;cursor:pointer;
+  transition:transform .15s ease,box-shadow .15s ease,background .2s;line-height:1.1}
+.btn-primary{background:var(--berry);color:#fff;box-shadow:0 6px 0 var(--berryd),0 16px 24px -12px rgba(217,45,94,.6)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--berryd),0 20px 28px -12px rgba(217,45,94,.6)}
+.btn-primary:active{transform:translateY(5px);box-shadow:0 1px 0 var(--berryd)}
+.btn-ghost{background:transparent;color:var(--choco);box-shadow:inset 0 0 0 2.5px var(--choco)}
+.btn-ghost:hover{background:var(--choco);color:var(--cream)}
+.btn-dark{background:var(--choco);color:var(--cream);box-shadow:0 5px 0 #1d0e09}
+.btn-dark:hover{transform:translateY(-2px)}
+.btn-dark:active{transform:translateY(4px);box-shadow:0 1px 0 #1d0e09}
+.btn-light{background:var(--cream);color:var(--choco);box-shadow:0 5px 0 var(--vanilla)}
+.btn-light:hover{transform:translateY(-2px)}
+.btn-sm{padding:.65rem 1.1rem;font-size:.95rem}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+
+/* ========== Nav ========== */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;width:min(1120px,calc(100% - 24px));
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px 9px 18px;border-radius:999px;
+  background:rgba(255,253,248,.8);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1px solid var(--line);box-shadow:0 12px 30px -16px rgba(59,32,23,.4);transition:box-shadow .3s,background .3s}
+.nav.scrolled{background:rgba(255,253,248,.94)}
+.logo{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-family:var(--fd);font-weight:600;font-size:1.3rem;color:var(--choco)}
+.logo b{color:var(--berry);font-weight:700;margin-left:.2em}
+.logo-mark{width:34px;height:34px;flex:none}
+.nav-links{display:flex;gap:4px}
+.nav-links a{padding:.5rem .95rem;border-radius:999px;text-decoration:none;font-weight:800;font-size:.95rem;transition:background .2s,color .2s}
+.nav-links a:hover{background:rgba(255,79,123,.12)}
+.nav-links a.active{background:var(--choco);color:var(--cream)}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--choco);cursor:pointer;position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:2.5px;border-radius:2px;background:var(--cream);transition:transform .25s,top .25s}
+.burger span:nth-child(1){top:17px}.burger span:nth-child(2){top:25px}
+.nav.open .burger span:nth-child(1){top:21px;transform:rotate(45deg)}
+.nav.open .burger span:nth-child(2){top:21px;transform:rotate(-45deg)}
+@media(max-width:860px){
+  .burger{display:block}
+  .nav-cta{display:none}
+  .nav-links{display:none;position:absolute;top:calc(100% + 10px);left:0;right:0;flex-direction:column;padding:10px;border-radius:26px;
+    background:var(--milk);box-shadow:var(--shadow);border:1px solid var(--line)}
+  .nav.open .nav-links{display:flex}
+  .nav-links a{padding:.8rem 1rem}
+}
+
+/* ========== Sections, type ========== */
+section{position:relative;z-index:1;padding:clamp(80px,11vw,150px) 0}
+.kicker{display:inline-block;font-weight:800;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--berryd);margin-bottom:.9rem}
+.kicker.light{color:var(--sun)}
+h2{font-size:clamp(2.1rem,4.8vw,3.5rem);letter-spacing:-.015em;margin-bottom:1.1rem}
+.sub{color:var(--choco2);max-width:56ch}
+.body{max-width:640px}
+@media(min-width:980px){
+  .content-r .body{margin-left:auto;width:min(54%,600px)}
+  .content-l .body{width:min(54%,600px)}
+}
+.card{background:var(--milk);border-radius:var(--r);border:1px solid var(--line);box-shadow:var(--shadow);padding:1.4rem}
+
+/* 3D reveal on scroll */
+.reveal{opacity:0;transform:perspective(900px) translate3d(0,46px,-70px) rotateX(16deg);transform-origin:50% 100%;
+  transition:opacity .8s ease,transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+.reveal.done{transition:transform .25s ease-out,box-shadow .25s,opacity .3s;transition-delay:0s}
+[data-tilt]{will-change:transform}
+[data-tilt]:hover{box-shadow:0 30px 50px -24px rgba(59,32,23,.55)}
+
+/* ========== Hero ========== */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:120px 0 90px}
+.hero-copy{max-width:560px}
+.eyebrow{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem .95rem;border-radius:999px;background:var(--milk);border:1px solid var(--line);
+  font-weight:800;font-size:.85rem;margin-bottom:1.4rem;box-shadow:0 8px 20px -14px rgba(59,32,23,.5)}
+.pulse{width:9px;height:9px;border-radius:50%;background:var(--berry);animation:ping 1.8s infinite;--pc:rgba(255,79,123,.6)}
+h1{font-size:clamp(3.2rem,8.2vw,6.2rem);letter-spacing:-.025em;line-height:.95;margin-bottom:1.4rem;perspective:800px}
+h1 .line{display:block;overflow:hidden;padding:0 .06em .1em}
+h1 .line>span{display:inline-block;transform:translateY(110%) rotateX(-70deg);transform-origin:50% 100%;
+  animation:rise .95s cubic-bezier(.2,.8,.2,1) forwards}
+h1 .line:nth-child(2)>span{animation-delay:.12s}
+h1 .line:nth-child(3)>span{animation-delay:.24s;color:var(--berry)}
+.lead{font-size:1.18rem;color:var(--choco2);max-width:46ch;margin-bottom:1.8rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:1.8rem}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips li,.tags li{padding:.4rem .9rem;border-radius:999px;background:var(--milk);border:1px solid var(--line);font-weight:800;font-size:.9rem}
+.status{display:inline-flex;align-items:center;gap:.55rem}
+.status .dot{width:10px;height:10px;border-radius:50%;background:#9a8f86;flex:none}
+.status.open .dot{background:#22b65a;animation:ping 1.6s infinite;--pc:rgba(34,182,90,.55)}
+.status.soon .dot{background:#f59e0b;animation:ping 1.6s infinite;--pc:rgba(245,158,11,.55)}
+.status.closed .dot{background:#d64545}
+.hero-fallback{display:none;position:absolute;right:9%;top:50%;font-size:min(34vw,320px);line-height:1;animation:float 5s ease-in-out infinite}
+html.no-webgl .hero-fallback{display:block}
+.scroll-cue{position:absolute;left:50%;bottom:26px;width:26px;height:42px;margin-left:-13px;border:2.5px solid var(--choco);border-radius:16px;opacity:.7}
+.scroll-cue span{position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--choco);animation:wheel 1.6s infinite}
+@media(max-width:979px){.hero{align-items:flex-start;padding-top:120px}.scroll-cue{display:none}}
+@keyframes rise{to{transform:none}}
+@keyframes ping{0%{box-shadow:0 0 0 0 var(--pc,rgba(0,0,0,.2))}80%,100%{box-shadow:0 0 0 10px transparent}}
+@keyframes float{50%{transform:translateY(-14px) rotate(4deg)}}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}100%{transform:translateY(14px);opacity:0}}
+
+/* ========== Marquee ========== */
+.marquee{position:relative;z-index:2;overflow:hidden;background:var(--choco);color:var(--cream);padding:14px 0;
+  transform:rotate(-2deg) scale(1.04);border-block:4px solid var(--sun);margin:10px 0}
+.marquee-row{display:flex;white-space:nowrap;will-change:transform}
+.marquee-row+.marquee-row{margin-top:4px}
+.marquee-group{display:flex;flex:none;align-items:center;gap:1.6rem;padding-right:1.6rem;font-family:var(--fd);font-weight:600;font-size:clamp(1.35rem,3vw,2.1rem)}
+.marquee-row.alt .marquee-group{color:var(--sun)}
+.marquee-group i{font-style:normal;color:var(--berry);font-size:.8em}
+
+/* ========== About ========== */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:1.8rem 0 1.4rem}
+.stat{display:flex;flex-direction:column;gap:.15rem;padding:1.2rem}
+.stat strong{font-family:var(--fd);font-size:1.5rem;color:var(--choco);line-height:1.1}
+.stat span{color:var(--choco2);font-size:.92rem}
+.stars{--r:3.6;position:relative;display:inline-block;font-size:1.25rem;letter-spacing:2px;line-height:1.2;color:#EAD9C0}
+.stars::before{content:"★★★★★"}
+.stars::after{content:"★★★★★";position:absolute;left:0;top:0;width:calc(var(--r)/5*100%);overflow:hidden;white-space:nowrap;color:var(--sun)}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ========== 3D menu drum ========== */
+.drum-section{height:460vh;padding:0}
+.drum-sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:8px;overflow:hidden;padding:76px 0 16px}
+.drum-head{text-align:center;padding:0 20px}
+.drum-head h2{margin-bottom:.4rem;font-size:clamp(1.9rem,4.2vw,3rem)}
+.drum-head .sub{margin-inline:auto;font-size:.95rem}
+.drum-stage{--pw:min(340px,78vw);--ph:clamp(370px,58svh,480px);position:relative;height:calc(var(--ph) + 24px);perspective:1500px;perspective-origin:50% 42%}
+.drum{position:absolute;left:50%;top:50%;width:var(--pw);height:var(--ph);margin-left:calc(var(--pw)/-2);margin-top:calc(var(--ph)/-2);transform-style:preserve-3d;will-change:transform}
+.panel{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;border-radius:28px;background:var(--milk);
+  border:1px solid var(--line);box-shadow:0 30px 50px -24px rgba(59,32,23,.55);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.panel-top{background:var(--c);color:var(--on);padding:1.1rem 1.4rem 1.5rem;border-radius:0 0 50% 50%/0 0 26px 26px}
+.panel-emoji{display:block;font-size:2.4rem;line-height:1.1;margin-bottom:.2rem}
+.panel-top h3{color:var(--on);font-size:1.7rem}
+.panel-top p{font-size:.92rem;opacity:.9;font-weight:600}
+.panel-list{flex:1;padding:.9rem 1.5rem .3rem;display:flex;flex-direction:column;justify-content:center;gap:.1rem}
+.panel-list li{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:.98rem;padding:.26rem 0;border-bottom:1px dashed var(--line)}
+.panel-list li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+.panel-list li:last-child{border-bottom:0}
+.panel-btn{margin:.4rem 1.4rem 1.3rem}
+.drum-dots{display:flex;justify-content:center;gap:8px}
+.drum-dots button{width:11px;height:11px;border-radius:99px;border:0;padding:0;background:rgba(59,32,23,.22);cursor:pointer;transition:width .3s,background .3s}
+.drum-dots button.on{width:30px;background:var(--berry)}
+.fineprint{text-align:center;font-size:.8rem;color:var(--choco2);padding:0 20px;opacity:.85}
+html.reduce .drum-section{height:auto;padding:clamp(80px,11vw,150px) 0}
+html.reduce .drum-sticky{position:static;height:auto;padding:0}
+html.reduce .drum-stage{height:auto;perspective:none}
+html.reduce .drum{position:static;width:min(1120px,calc(100% - 40px));margin:24px auto;height:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;transform:none!important}
+html.reduce .panel{position:relative;transform:none!important;opacity:1!important;min-height:420px}
+html.reduce .drum-dots{display:none}
+
+/* ========== Services ========== */
+.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:1.8rem}
+.svc{padding:1.3rem}
+.svc .ico{display:grid;place-items:center;width:54px;height:54px;border-radius:16px;font-size:1.7rem;background:var(--vanilla);margin-bottom:.8rem;transform:translateZ(30px)}
+.svc h3{font-size:1.3rem;margin-bottom:.3rem}
+.svc p{color:var(--choco2);font-size:.96rem;line-height:1.5}
+
+/* ========== Order builder ========== */
+.builder{padding:1.4rem;margin-top:1.6rem}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.tab{flex:none;padding:.55rem 1rem;border-radius:999px;border:2px solid var(--line);background:transparent;font-weight:800;cursor:pointer;color:var(--choco)}
+.tab.on{background:var(--choco);color:var(--cream);border-color:var(--choco)}
+.items{display:grid;gap:8px;margin:12px 0 4px}
+@media(min-width:560px){.items{grid-template-columns:1fr 1fr}}
+.item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:.55rem .75rem;background:#fff;border-radius:14px;border:1px solid var(--line)}
+.item .nm{font-weight:700;font-size:.95rem;line-height:1.25}
+.qty{display:flex;align-items:center;gap:8px;flex:none}
+.qty button{width:32px;height:32px;border-radius:50%;border:0;background:var(--vanilla);font-weight:800;font-size:1.1rem;line-height:1;cursor:pointer;color:var(--choco)}
+.qty button:last-child{background:var(--berry);color:#fff}
+.qty output{min-width:1.2em;text-align:center;font-weight:800}
+.summary{margin-top:1.4rem;padding-top:1.3rem;border-top:2px dashed var(--line)}
+.summary h3{font-size:1.35rem;display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem}
+.count{display:inline-grid;place-items:center;min-width:26px;height:26px;padding:0 6px;border-radius:99px;background:var(--berry);color:#fff;font-size:.85rem;font-family:var(--fb);font-weight:800}
+#cartList li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:.35rem 0;font-weight:700;border-bottom:1px solid var(--line)}
+#cartList button{border:0;background:none;color:var(--berryd);font-weight:800;cursor:pointer;font-size:1.1rem}
+.empty{color:var(--choco2);font-size:.95rem}
+fieldset{border:0;padding:0;margin:1.2rem 0 .4rem}
+legend{font-weight:800;margin-bottom:.5rem;padding:0}
+.modes{display:flex;flex-wrap:wrap;gap:8px}
+.mode{position:relative}
+.mode input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.mode span{display:block;padding:.5rem .9rem;border-radius:999px;border:2px solid var(--line);font-weight:800;font-size:.9rem;background:#fff}
+.mode input:checked+span{background:var(--choco);border-color:var(--choco);color:var(--cream)}
+.mode input:focus-visible+span{outline:3px solid var(--berry);outline-offset:2px}
+.field{display:block;margin-top:.9rem;font-weight:800;font-size:.9rem}
+.field input,.field textarea{display:block;width:100%;margin-top:.3rem;padding:.75rem 1rem;border-radius:14px;border:2px solid var(--line);font:inherit;font-weight:600;background:#fff;color:var(--ink);resize:vertical}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--berry)}
+.field.bad textarea{border-color:#d64545}
+.send{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:1.3rem}
+.hint{font-size:.9rem;color:#b3261e;font-weight:700;min-height:1.3em;margin-top:.5rem}
+.call{font-weight:800;font-size:.95rem}
+
+/* ========== Visit ========== */
+.visit{background:var(--choco);color:var(--cream);border-radius:48px 48px 0 0;padding-bottom:clamp(60px,8vw,100px)}
+.visit h2{color:var(--cream)}
+.visit-grid{display:grid;gap:36px}
+@media(min-width:900px){.visit-grid{grid-template-columns:1fr 1fr;align-items:start}}
+.visit address{font-size:1.15rem;margin:.4rem 0 1rem;color:#F6DFC0}
+.visit .status{background:rgba(255,253,248,.1);padding:.5rem 1rem;border-radius:999px;font-weight:800;margin-bottom:1.2rem}
+.contact-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:1.6rem}
+.hours{max-width:420px;border-radius:20px;background:rgba(255,253,248,.07);padding:.6rem 1.2rem}
+.hours li{display:flex;justify-content:space-between;gap:12px;padding:.5rem 0;border-bottom:1px solid rgba(255,253,248,.12);font-weight:700}
+.hours li:last-child{border-bottom:0}
+.hours li.today{color:var(--sun)}
+.hours li.today span:first-child::after{content:" · today";font-weight:600;font-size:.85em}
+.map{padding:0;overflow:hidden;min-height:340px;background:#2a1810;border-color:rgba(255,253,248,.15)}
+.map iframe{display:block;width:100%;height:100%;min-height:420px;border:0}
+.map-note{padding:.8rem 1.1rem;font-size:.9rem;color:#F6DFC0;background:#2a1810}
+footer{position:relative;z-index:1;background:var(--ink);color:#d9c3a8;padding:34px 0 40px;font-size:.92rem}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 30px;align-items:center}
+.foot a{text-decoration:none;font-weight:800;color:var(--cream)}
+.foot .links{display:flex;flex-wrap:wrap;gap:18px}
+noscript .wrap{padding:90px 0}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  h1 .line>span{animation:none;transform:none}
+  .marquee-row{transform:none!important}
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" id="progress"></div>
+<canvas id="scene" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#home" aria-label="Milky Taste Eatery – back to top">
+    <svg class="logo-mark" viewBox="0 0 36 36" aria-hidden="true">
+      <path d="M8 14h20l-2.4 16.2a2 2 0 0 1-2 1.8H12.400a2 2 0 0 1-2-1.800z" fill="#FF4F7B" stroke="#3B2017" stroke-width="1.6" stroke-linejoin="round"/>
+      <ellipse cx="18" cy="12" rx="11" ry="5.600" fill="#FFFDF8" stroke="#3B2017" stroke-width="1.6"/>
+      <circle cx="18" cy="5.200" r="2.600" fill="#D92D5E" stroke="#3B2017" stroke-width="1.2"/>
+    </svg>
+    <span>Milky<b>Taste</b></span>
+  </a>
+  <nav class="nav-links" id="navLinks" aria-label="Main">
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#services">Services</a>
+    <a href="#order">Order</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <a class="btn btn-primary btn-sm nav-cta" href="#order">Order now</a>
+  <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow reveal"><span class="pulse"></span> Fast food &amp; dining · Otolo, Nnewi</p>
+        <h1><span class="line"><span>Sip it.</span></span><span class="line"><span>Bite it.</span></span><span class="line"><span>Share it.</span></span></h1>
+        <p class="lead reveal">African continental dishes, quick bites, small chops and thick, creamy milkshakes, served in a casual, family-friendly spot. Dine in, take out, or have it delivered.</p>
+        <div class="hero-cta reveal">
+          <a class="btn btn-primary" href="#order">Start your order</a>
+          <a class="btn btn-ghost" href="#menu">Explore the menu</a>
+        </div>
+        <ul class="chips reveal">
+          <li class="status js-status"><span class="dot"></span><span class="txt">Open daily · 8:00 AM – 10:30 PM</span></li>
+          <li>🚗 Drive-through</li>
+          <li>🅿️ Free parking</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hero-fallback" aria-hidden="true">🥤</div>
+    <a class="scroll-cue" href="#about" aria-label="Scroll to About"><span></span></a>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-row" data-dir="1"><div class="marquee-group"><span>Milkshakes</span><i>✦</i><span>African Continental</span><i>✦</i><span>Quick Bites</span><i>✦</i><span>Small Chops</span><i>✦</i><span>Drinks</span><i>✦</i></div></div>
+    <div class="marquee-row alt" data-dir="-1"><div class="marquee-group"><span>Dine-in</span><i>✦</i><span>Takeout</span><i>✦</i><span>Delivery</span><i>✦</i><span>Drive-through</span><i>✦</i><span>No-contact delivery</span><i>✦</i></div></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="content-r">
+    <div class="wrap"><div class="body">
+      <p class="kicker reveal">About us</p>
+      <h2 class="reveal">Fast-food speed. Sit-down comfort.</h2>
+      <p class="sub reveal">Milky Taste Eatery is a full-service fast-food and dining restaurant in Otolo, Nnewi. Whether you want a quick bite, a plate of African continental favourites, a tray of small chops or a thick, creamy milkshake, you'll find it here: relaxed, family-friendly and roomy enough for groups.</p>
+      <div class="stats" data-stagger>
+        <div class="card stat reveal" data-tilt><strong>7 days</strong><span>open every week</span></div>
+        <div class="card stat reveal" data-tilt><strong>8 AM – 10:30 PM</strong><span>every single day</span></div>
+        <div class="card stat reveal" data-tilt>
+          <span class="stars" style="--r:3.6" role="img" aria-label="Rated 3.6 out of 5"></span>
+          <strong>3.6 / 5</strong><span>customer rating</span>
+        </div>
+      </div>
+      <ul class="tags reveal"><li>Casual</li><li>Family-friendly</li><li>Good for groups</li><li>Free parking</li></ul>
+    </div></div>
+  </section>
+
+  <!-- MENU (3D drum, scroll-driven) -->
+  <section id="menu" class="drum-section" aria-labelledby="menuTitle">
+    <div class="drum-sticky">
+      <div class="drum-head">
+        <p class="kicker">The menu</p>
+        <h2 id="menuTitle">Pick your craving</h2>
+        <p class="sub">Keep scrolling and the menu spins.</p>
+      </div>
+      <div class="drum-stage"><div class="drum" id="drum"></div></div>
+      <div class="drum-dots" id="drumDots"></div>
+      <p class="fineprint">Menu items, prices and availability can change. Message us for today's menu and prices.</p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="content-l">
+    <div class="wrap"><div class="body">
+      <p class="kicker reveal">Ways to enjoy</p>
+      <h2 class="reveal">Your table, your car, or your door.</h2>
+      <p class="sub reveal">However your day is going, there's a way to get Milky Taste that fits.</p>
+      <div class="service-grid" data-stagger>
+        <article class="card svc reveal" data-tilt><span class="ico">🍽️</span><h3>Dine-in</h3><p>Settle in with family or a group. The space is casual and relaxed.</p></article>
+        <article class="card svc reveal" data-tilt><span class="ico">🛍️</span><h3>Takeout</h3><p>Place your order, pick it up and go.</p></article>
+        <article class="card svc reveal" data-tilt><span class="ico">🛵</span><h3>Delivery</h3><p>Your food and milkshakes, brought to where you are.</p></article>
+        <article class="card svc reveal" data-tilt><span class="ico">🚗</span><h3>Drive-through</h3><p>Order from your car and keep your day moving.</p></article>
+        <article class="card svc reveal" data-tilt><span class="ico">📦</span><h3>No-contact delivery</h3><p>Your order left at your door, with no handoff needed.</p></article>
+        <article class="card svc reveal" data-tilt><span class="ico">🅿️</span><h3>Free parking</h3><p>Park for free when you drop in.</p></article>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ORDER -->
+  <section id="order" class="content-r">
+    <div class="wrap"><div class="body">
+      <p class="kicker reveal">Order</p>
+      <h2 class="reveal">Build your order. We'll confirm on WhatsApp.</h2>
+      <p class="sub reveal">Choose what you'd like, tell us how you want it, and send. We'll reply on WhatsApp to confirm your total and timing.</p>
+<div id="orders-container"></div>
+      <div class="card builder reveal">
+        <div class="tabs" id="orderTabs" role="group" aria-label="Menu categories"></div>
+        <div class="items" id="orderItems"></div>
+
+        <div class="summary">
+          <h3>Your order <span class="count" id="cartCount">0</span></h3>
+          <ul id="cartList"></ul>
+          <p class="empty" id="cartEmpty">Nothing yet. Add something tasty above.</p>
+
+          <fieldset>
+            <legend>How would you like it?</legend>
+            <div class="modes" id="modes"></div>
+          </fieldset>
+
+          <label class="field">Your name
+            <input id="oName" type="text" autocomplete="name" placeholder="e.g. Chidi">
+          </label>
+          <label class="field" id="addrWrap">Delivery address
+            <textarea id="oAddr" rows="2" autocomplete="street-address" placeholder="Street, area, landmark"></textarea>
+          </label>
+          <label class="field">Notes (optional)
+            <textarea id="oNotes" rows="2" placeholder="Allergies, extra spice, pickup time…"></textarea>
+          </label>
+
+          <p class="hint" id="orderMsg" role="status"></p>
+          <div class="send">
+            <button class="btn btn-primary" id="sendWa" type="button" disabled>Send order on WhatsApp</button>
+            <a class="call" href="tel:+2349037911482">or call +234 903 791 1482</a>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visit" class="visit">
+    <div class="wrap">
+      <div class="visit-grid">
+        <div>
+          <p class="kicker light reveal">Visit us</p>
+          <h2 class="reveal">Come hungry. Leave happy.</h2>
+          <address class="reveal">No. 1, Obiakwu Okofia,<br>Otolo, Nnewi,<br>Anambra State, Nigeria</address>
+          <p class="status js-status reveal"><span class="dot"></span><span class="txt"></span></p>
+          <div class="contact-btns reveal">
+            <a class="btn btn-primary" href="https://wa.me/2349037911482" target="_blank" rel="noopener">WhatsApp us</a>
+            <a class="btn btn-light" href="tel:+2349037911482">Call 0903 791 1482</a>
+            <a class="btn btn-light" href="tel:+2349021643988">Call 0902 164 3988</a>
+            <a class="btn btn-light" href="https://www.instagram.com/milkytasteeatery/" target="_blank" rel="noopener">Instagram</a>
+          </div>
+          <ul class="hours reveal" id="hours" aria-label="Opening hours"></ul>
+        </div>
+        <div class="card map reveal">
+          <iframe title="Map showing Milky Taste Eatery in Otolo, Nnewi" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=No.%201%20Obiakwu%20Okofia%2C%20Otolo%2C%20Nnewi%2C%20Anambra%20State%2C%20Nigeria&amp;output=embed"></iframe>
+          <p class="map-note"><a href="https://www.google.com/maps/search/?api=1&amp;query=Milky%20Taste%20Eatery%2C%20Otolo%2C%20Nnewi%2C%20Anambra%20State" target="_blank" rel="noopener">Open in Google Maps for directions →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>© <span id="year">2026</span> Milky Taste Eatery · Otolo, Nnewi</p>
+    <div class="links">
+      <a href="#menu">Menu</a><a href="#order">Order</a>
+      <a href="https://www.instagram.com/milkytasteeatery/" target="_blank" rel="noopener">@milkytasteeatery</a>
+    </div>
+  </div>
+</footer>
+
+<noscript>
+  <div class="wrap"><p><strong>Milky Taste Eatery</strong> · No. 1, Obiakwu Okofia, Otolo, Nnewi · Open daily 8:00 AM – 10:30 PM · WhatsApp/Call +234 903 791 1482 or 0902 164 3988. Please enable JavaScript to see the full menu.</p></div>
+</noscript>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(() => {
+'use strict';
+
+/* ------------------------------------------------------------------
+   EDIT HERE: business settings and menu
+   The menu items below are placeholders. Replace them with the real menu.
+------------------------------------------------------------------- */
+const WHATSAPP = '2349037911482';          // international format, no + or spaces
+const OPEN_MIN = 8 * 60;                   // 8:00 AM
+const CLOSE_MIN = 22 * 60 + 30;            // 10:30 PM
+const TIMEZONE = 'Africa/Lagos';
+
+const MENU = [
+  { id:'shakes',  name:'Milkshakes',          emoji:'🥤', color:'#FF4F7B', on:'#ffffff', tag:'Thick, cold and creamy.',
+    items:['Strawberry Milkshake','Vanilla Milkshake','Chocolate Milkshake','Oreo Cookies & Cream','Banana Milkshake','Butterscotch Milkshake'] },
+  { id:'african', name:'African Continental', emoji:'🍛', color:'#4FCFAA', on:'#2A1810', tag:'Hearty plates and local favourites.',
+    items:['Jollof Rice & Chicken','Fried Rice & Turkey','Egusi Soup & Pounded Yam','Ofe Onugbu & Fufu','Spaghetti & Stew','Rice & Stew'] },
+  { id:'bites',   name:'Quick Bites',         emoji:'🍔', color:'#FFC53D', on:'#2A1810', tag:'Fast, hot and satisfying.',
+    items:['Beef Burger','Chicken & Chips','Shawarma','Hot Dog','Meat Pie','Club Sandwich'] },
+  { id:'chops',   name:'Small Chops',         emoji:'🍢', color:'#FF8A3D', on:'#2A1810', tag:'Made for sharing.',
+    items:['Puff-Puff','Spring Rolls','Samosa','Peppered Gizzard','Chicken Wings','Fish Roll'] },
+  { id:'drinks',  name:'Drinks',              emoji:'🧃', color:'#5BB8FF', on:'#2A1810', tag:'Something cold to go with it.',
+    items:['Chapman','Zobo','Fresh Fruit Juice','Soft Drinks','Bottled Water','Iced Tea'] }
+];
+const MODES = ['Delivery','No-contact delivery','Pickup / takeout','Dine-in','Drive-through'];
+const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+
+/* ------------------------------------------------------------------ */
+const $  = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const clamp = (v,a,b) => Math.min(b, Math.max(a, v));
+const root = document.documentElement;
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const coarse = matchMedia('(pointer: coarse)').matches;
+if (reduceMotion) root.classList.add('reduce');
+
+/* ---------- layout measurements shared by scene, drum, scrollspy ---------- */
+const IDS = ['home','about','menu','services','order','visit'];
+const tops = {};
+function measure(){
+  IDS.forEach(id => { const el = document.getElementById(id); if (el) tops[id] = el.getBoundingClientRect().top + window.scrollY; });
+}
+
+/* ---------- opening hours + status ---------- */
+function lagosNow(){
+  const parts = new Intl.DateTimeFormat('en-GB', { timeZone:TIMEZONE, weekday:'long', hour:'2-digit', minute:'2-digit', hourCycle:'h23' }).formatToParts(new Date());
+  const get = t => parts.find(p => p.type === t).value;
+  return { day:get('weekday'), mins:(+get('hour'))*60 + (+get('minute')) };
+}
+function renderHours(){
+  const ul = $('#hours'); if (!ul) return;
+  ul.innerHTML = '';
+  DAYS.forEach(d => {
+    const li = document.createElement('li'); li.dataset.day = d;
+    li.innerHTML = '<span>'+d+'</span><span>8:00 AM – 10:30 PM</span>';
+    ul.appendChild(li);
+  });
+}
+function updateStatus(){
+  const now = lagosNow();
+  let cls, text;
+  if (now.mins >= OPEN_MIN && now.mins < CLOSE_MIN){
+    if (CLOSE_MIN - now.mins <= 60){ cls = 'soon'; text = 'Closing soon · until 10:30 PM'; }
+    else { cls = 'open'; text = 'Open now · until 10:30 PM'; }
+  } else if (now.mins < OPEN_MIN){ cls = 'closed'; text = 'Closed · opens today at 8:00 AM'; }
+  else { cls = 'closed'; text = 'Closed · opens tomorrow at 8:00 AM'; }
+  $$('.js-status').forEach(el => {
+    el.classList.remove('open','soon','closed'); el.classList.add(cls);
+    const txt = $('.txt', el); if (txt) txt.textContent = text;
+  });
+  $$('#hours li').forEach(li => li.classList.toggle('today', li.dataset.day === now.day));
+}
+
+/* ---------- menu drum ---------- */
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const drumSection = $('#menu'), drum = $('#drum'), dotsBox = $('#drumDots');
+const N = MENU.length, STEP = 360 / N;
+let panels = [], dots = [], R = 300, rotCur = 0;
+
+function buildDrum(){
+  MENU.forEach((c, i) => {
+    const p = document.createElement('article');
+    p.className = 'panel';
+    p.style.setProperty('--c', c.color);
+    p.style.setProperty('--on', c.on);
+    p.innerHTML =
+      '<div class="panel-top"><span class="panel-emoji" aria-hidden="true">'+c.emoji+'</span><h3>'+esc(c.name)+'</h3><p>'+esc(c.tag)+'</p></div>' +
+      '<ul class="panel-list">'+c.items.map(n => '<li>'+esc(n)+'</li>').join('')+'</ul>' +
+      '<a class="btn btn-dark btn-sm panel-btn" href="#order" data-cat="'+c.id+'">Add to my order</a>';
+    drum.appendChild(p); panels.push(p);
+
+    const d = document.createElement('button');
+    d.type = 'button'; d.setAttribute('aria-label', 'Show ' + c.name);
+    d.addEventListener('click', () => {
+      const total = drumSection.offsetHeight - window.innerHeight;
+      const pp = N > 1 ? i / (N - 1) : 0;
+      window.scrollTo({ top: tops.menu + (0.08 + pp * 0.84) * total, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+    dotsBox.appendChild(d); dots.push(d);
+  });
+  drum.addEventListener('click', e => {
+    const b = e.target.closest('[data-cat]'); if (!b) return;
+    activeCat = b.dataset.cat; renderTabs(); renderItems();
+  });
+}
+function layoutDrum(){
+  if (reduceMotion || !panels.length) return;
+  const pw = panels[0].offsetWidth || 320;
+  R = Math.round(pw / 2 / Math.tan(Math.PI / N) * 1.18);
+  panels.forEach((p, i) => { p.style.transform = 'rotateY(' + (i * STEP) + 'deg) translateZ(' + R + 'px)'; });
+}
+function updateDrum(){
+  if (reduceMotion || !panels.length) return;
+  const total = drumSection.offsetHeight - window.innerHeight;
+  const p = clamp(-drumSection.getBoundingClientRect().top / total, 0, 1);
+  const pp = clamp((p - 0.08) / 0.84, 0, 1);
+  const target = -pp * (N - 1) * STEP;
+  rotCur += (target - rotCur) * 0.12;
+  if (Math.abs(target - rotCur) < 0.02) rotCur = target;
+  drum.style.transform = 'translateZ(' + (-R) + 'px) rotateY(' + rotCur.toFixed(3) + 'deg)';
+  panels.forEach((el, i) => {
+    const a = (((i * STEP + rotCur + 180) % 360) + 360) % 360 - 180;
+    const d = Math.abs(a);
+    el.style.opacity = clamp(1.1 - d / 85, 0.18, 1).toFixed(2);
+    el.style.pointerEvents = d < 30 ? 'auto' : 'none';
+  });
+  const idx = Math.round(pp * (N - 1));
+  dots.forEach((d, i) => d.classList.toggle('on', i === idx));
+}
+
+/* ---------- order builder (sends a WhatsApp message) ---------- */
+const cart = new Map();
+let activeCat = MENU[0].id;
+let mode = MODES[0];
+
+function renderTabs(){
+  const t = $('#orderTabs'); t.innerHTML = '';
+  MENU.forEach(c => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'tab' + (c.id === activeCat ? ' on' : '');
+    b.textContent = c.emoji + ' ' + c.name;
+    b.setAttribute('aria-pressed', c.id === activeCat);
+    b.addEventListener('click', () => { activeCat = c.id; renderTabs(); renderItems(); });
+    t.appendChild(b);
+  });
+}
+function change(name, d){
+  const q = clamp((cart.get(name) || 0) + d, 0, 20);
+  if (q) cart.set(name, q); else cart.delete(name);
+  renderCart();
+}
+function renderItems(){
+  const c = MENU.find(x => x.id === activeCat);
+  const box = $('#orderItems'); box.innerHTML = '';
+  c.items.forEach(name => {
+    const row = document.createElement('div'); row.className = 'item';
+    row.innerHTML = '<span class="nm"></span><div class="qty"><button type="button">−</button><output>0</output><button type="button">+</button></div>';
+    $('.nm', row).textContent = name;
+    const [minus, plus] = $$('button', row), out = $('output', row);
+    minus.setAttribute('aria-label', 'Remove one ' + name);
+    plus.setAttribute('aria-label', 'Add one ' + name);
+    out.textContent = cart.get(name) || 0;
+    minus.addEventListener('click', () => { change(name, -1); out.textContent = cart.get(name) || 0; });
+    plus.addEventListener('click',  () => { change(name, +1); out.textContent = cart.get(name) || 0; });
+    box.appendChild(row);
+  });
+}
+function renderCart(){
+  const list = $('#cartList'); list.innerHTML = '';
+  let count = 0;
+  cart.forEach((q, name) => {
+    count += q;
+    const li = document.createElement('li');
+    const span = document.createElement('span'); span.textContent = q + ' × ' + name;
+    const x = document.createElement('button'); x.type = 'button'; x.textContent = '×'; x.setAttribute('aria-label', 'Remove ' + name);
+    x.addEventListener('click', () => { cart.delete(name); renderCart(); renderItems(); });
+    li.append(span, x); list.appendChild(li);
+  });
+  $('#cartCount').textContent = count;
+  $('#cartEmpty').style.display = count ? 'none' : 'block';
+  $('#sendWa').disabled = !count;
+  $('#orderMsg').textContent = '';
+}
+function renderModes(){
+  const box = $('#modes');
+  MODES.forEach((m, i) => {
+    const l = document.createElement('label'); l.className = 'mode';
+    l.innerHTML = '<input type="radio" name="mode"><span></span>';
+    const inp = $('input', l); inp.value = m; inp.checked = i === 0;
+    $('span', l).textContent = m;
+    inp.addEventListener('change', () => { mode = m; toggleAddr(); });
+    box.appendChild(l);
+  });
+  toggleAddr();
+}
+function toggleAddr(){ $('#addrWrap').style.display = /delivery/i.test(mode) ? 'block' : 'none'; }
+function sendOrder(){
+  const msg = $('#orderMsg'), addr = $('#oAddr');
+  const needsAddr = /delivery/i.test(mode);
+  $('#addrWrap').classList.remove('bad');
+  if (!cart.size){ msg.textContent = 'Add at least one item first.'; return; }
+  if (needsAddr && !addr.value.trim()){
+    msg.textContent = 'Please add a delivery address.';
+    $('#addrWrap').classList.add('bad'); addr.focus(); return;
+  }
+  const lines = [];
+  cart.forEach((q, name) => lines.push('• ' + q + ' × ' + name));
+  const name = $('#oName').value.trim(), notes = $('#oNotes').value.trim();
+  let text = 'Hello Milky Taste! I would like to place an order:\n\n' + lines.join('\n') + '\n\nOrder type: ' + mode;
+  if (name) text += '\nName: ' + name;
+  if (needsAddr) text += '\nDelivery address: ' + addr.value.trim();
+  if (notes) text += '\nNotes: ' + notes;
+  text += '\n\nPlease confirm the total and how long it will take. Thank you!';
+  window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+}
+
+/* ---------- marquee (scroll-driven) ---------- */
+const mRows = $$('.marquee-row').map(row => {
+  const g = row.firstElementChild;
+  row.appendChild(g.cloneNode(true)); row.appendChild(g.cloneNode(true));
+  return { row, dir:+row.dataset.dir, w:1 };
+});
+function measureMarquee(){ mRows.forEach(r => { r.w = r.row.firstElementChild.offsetWidth || 1; }); }
+let skew = 0, lastY = window.scrollY;
+function updateMarquee(time, y){
+  const vel = y - lastY; lastY = y;
+  skew += (clamp(vel * 0.12, -7, 7) - skew) * 0.12;
+  const o = y * 0.4 + (reduceMotion ? 0 : time * 36);
+  mRows.forEach(r => {
+    const m = o % r.w;
+    const x = r.dir > 0 ? -m : -r.w + m;
+    r.row.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0) skewX(' + (-skew).toFixed(2) + 'deg)';
+  });
+}
+
+/* ---------- nav, progress, scrollspy ---------- */
+const nav = $('#nav'), progress = $('#progress');
+const spyLinks = $$('.nav-links a');
+function updateChrome(y){
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.transform = 'scaleX(' + (max > 0 ? clamp(y / max, 0, 1) : 0).toFixed(4) + ')';
+  nav.classList.toggle('scrolled', y > 20);
+  let current = '';
+  ['about','menu','services','order','visit'].forEach(id => {
+    if (tops[id] != null && y + window.innerHeight * 0.4 >= tops[id]) current = id;
+  });
+  spyLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+}
+$('#burger').addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  $('#burger').setAttribute('aria-expanded', open);
+  $('#burger').setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+});
+$$('.nav-links a').forEach(a => a.addEventListener('click', () => {
+  nav.classList.remove('open'); $('#burger').setAttribute('aria-expanded', 'false');
+}));
+
+/* ---------- reveal on scroll + card tilt ---------- */
+$$('[data-stagger]').forEach(g => Array.from(g.children).forEach((c, i) => c.style.setProperty('--d', (i * 0.09) + 's')));
+if ('IntersectionObserver' in window){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target; io.unobserve(el);
+      el.classList.add('in');
+      setTimeout(() => el.classList.add('done'), 1300 + (parseFloat(el.style.getPropertyValue('--d')) || 0) * 1000);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+  $$('.reveal').forEach(el => io.observe(el));
+} else { $$('.reveal').forEach(el => el.classList.add('in', 'done')); }
+
+if (!coarse && !reduceMotion){
+  $$('[data-tilt]').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = 'perspective(800px) rotateX(' + (-py * 11).toFixed(2) + 'deg) rotateY(' + (px * 13).toFixed(2) + 'deg) translateZ(10px)';
+    });
+    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+  });
+}
+
+/* ---------- 3D scene: a milkshake that travels, spins and changes flavour as you scroll ---------- */
+const ptr = { tx:0, ty:0, x:0, y:0 };
+window.addEventListener('pointermove', e => {
+  ptr.tx = e.clientX / window.innerWidth - 0.5;
+  ptr.ty = e.clientY / window.innerHeight - 0.5;
+}, { passive:true });
+
+function initScene(){
+  const canvas = $('#scene');
+  if (!window.THREE || !canvas){ root.classList.add('no-webgl'); return null; }
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true }); }
+  catch (err){ root.classList.add('no-webgl'); return null; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+
+  const FOV = 38, CAM_Z = 9;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(FOV, 1, 0.1, 60);
+  camera.position.set(0, 0, CAM_Z);
+
+  scene.add(new THREE.AmbientLight(0xfff4e6, 0.85));
+  const key = new THREE.DirectionalLight(0xffffff, 0.95); key.position.set(3, 5, 6); scene.add(key);
+  const rim = new THREE.PointLight(0xff7aa2, 1.1, 30); rim.position.set(-5, 2, 4); scene.add(rim);
+  const warm = new THREE.PointLight(0xffc53d, 0.7, 30); warm.position.set(5, -3, 5); scene.add(warm);
+
+  function stripeTexture(){
+    const c = document.createElement('canvas'); c.width = 64; c.height = 256;
+    const g = c.getContext('2d');
+    g.fillStyle = '#ffffff'; g.fillRect(0, 0, 64, 256);
+    g.fillStyle = '#ff4f7b';
+    for (let i = -4; i < 12; i++){
+      g.beginPath(); g.moveTo(0, i * 32); g.lineTo(64, i * 32 + 32); g.lineTo(64, i * 32 + 48); g.lineTo(0, i * 32 + 16); g.closePath(); g.fill();
+    }
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1, 3); return t;
+  }
+
+  // The milkshake
+  const shake = new THREE.Group(); scene.add(shake);
+  const inner = new THREE.Group(); inner.position.y = -0.72; shake.add(inner);
+
+  const glassMat = new THREE.MeshPhongMaterial({ color:0xffffff, transparent:true, opacity:0.2, shininess:130, specular:0xffffff, side:THREE.DoubleSide, depthWrite:false });
+  const baseMat = glassMat.clone(); baseMat.opacity = 0.45;
+  const liquidMat = new THREE.MeshStandardMaterial({ color:0xff7aa2, roughness:0.35 });
+  const creamMat = new THREE.MeshStandardMaterial({ color:0xfffaf0, roughness:0.55 });
+
+  const liquid = new THREE.Mesh(new THREE.CylinderGeometry(0.97, 0.68, 2.55, 56), liquidMat);
+  liquid.position.y = -0.07; inner.add(liquid);
+
+  const prof = [new THREE.Vector2(0, 0)];
+  for (let i = 0; i <= 48; i++){
+    const t = i / 48;
+    prof.push(new THREE.Vector2(Math.max(0.001, (1 - Math.pow(t, 1.6)) * (1.02 + 0.07 * Math.sin(t * 16))), t * 1.25));
+  }
+  const cream = new THREE.Mesh(new THREE.LatheGeometry(prof, 56), creamMat);
+  cream.position.y = 1.2; inner.add(cream);
+
+  const glass = new THREE.Mesh(new THREE.CylinderGeometry(1.05, 0.72, 2.7, 56, 1, true), glassMat);
+  glass.renderOrder = 2; inner.add(glass);
+  const base = new THREE.Mesh(new THREE.CylinderGeometry(0.72, 0.72, 0.12, 56), baseMat);
+  base.position.y = -1.41; base.renderOrder = 2; inner.add(base);
+  const shine = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.056, 0.738, 2.6, 12, 1, true, -0.95, 0.13),
+    new THREE.MeshBasicMaterial({ color:0xffffff, transparent:true, opacity:0.45, side:THREE.DoubleSide, depthWrite:false })
+  );
+  shine.renderOrder = 3; inner.add(shine);
+
+  const cherry = new THREE.Mesh(new THREE.SphereGeometry(0.21, 32, 24), new THREE.MeshStandardMaterial({ color:0xd8123b, roughness:0.22, metalness:0.05 }));
+  cherry.position.set(0, 2.56, 0); inner.add(cherry);
+  const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.34, 8), new THREE.MeshStandardMaterial({ color:0x5b3a1e, roughness:0.8 }));
+  stem.position.set(0.06, 2.86, 0); stem.rotation.z = -0.35; inner.add(stem);
+  const straw = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 3.8, 20), new THREE.MeshStandardMaterial({ map:stripeTexture(), roughness:0.4 }));
+  straw.position.set(0.3, 0.95, 0.05); straw.rotation.z = -0.2; inner.add(straw);
+
+  // Floating scoops and sprinkles with depth parallax
+  const palette = [0xff4f7b, 0xffc53d, 0x4fcfaa, 0xfffdf8, 0x6c4635, 0xff8a3d];
+  const mats = palette.map(c => new THREE.MeshStandardMaterial({ color:c, roughness:0.4 }));
+  const sphereGeo = new THREE.SphereGeometry(1, 20, 16);
+  const sprGeo = new THREE.CylinderGeometry(0.035, 0.035, 0.28, 8);
+  const floaters = [];
+  for (let i = 0; i < 28; i++){
+    const m = new THREE.Mesh(sphereGeo, mats[i % mats.length]);
+    const z = -4 + Math.random() * 6.5;
+    m.scale.setScalar(0.07 + Math.random() * 0.2); scene.add(m);
+    floaters.push({ m, n:Math.random(), x:Math.random() * 2 - 1, z, sp:0.5 + (z + 4) / 6.5 * 1.1, ph:Math.random() * 6.28, spr:false });
+  }
+  for (let i = 0; i < 44; i++){
+    const m = new THREE.Mesh(sprGeo, mats[(i + 2) % mats.length]);
+    const z = -3.5 + Math.random() * 6;
+    m.position.z = z; scene.add(m);
+    floaters.push({ m, n:Math.random(), x:Math.random() * 2 - 1, z, sp:0.5 + (z + 3.5) / 6 * 1.1, ph:Math.random() * 6.28, spr:true });
+  }
+  floaters.forEach(f => { f.m.position.z = f.z; });
+
+  // Choreography: where the milkshake sits in each section (x/y are fractions of half the screen)
+  const KD = [ // desktop / landscape
+    { id:'home',     x: 0.52, y: 0,    s:1,    r: 0.12, o:1, c:0xff7aa2 },
+    { id:'about',    x:-0.52, y: 0.02, s:0.92, r:-0.12, o:1, c:0x7a4630 },
+    { id:'menu',     x: 0,    y: 0,    s:0,    r: 0,    o:1, c:0xffc53d },
+    { id:'services', x: 0.52, y: 0,    s:0.95, r: 0.1,  o:1, c:0x6fdcc0 },
+    { id:'order',    x:-0.52, y: 0,    s:0.9,  r:-0.1,  o:1, c:0xffd35a },
+    { id:'visit',    x: 0,    y: 0,    s:0,    r: 0,    o:1, c:0xff7aa2 }
+  ];
+  const KM = [ // portrait / phones: sits behind the text, softer
+    { id:'home',     x: 0.3,  y:-0.28, s:0.95, r: 0.12, o:0.6,  c:0xff7aa2 },
+    { id:'about',    x:-0.4,  y: 0.1,  s:0.7,  r:-0.12, o:0.22, c:0x7a4630 },
+    { id:'menu',     x: 0,    y: 0,    s:0,    r: 0,    o:0.22, c:0xffc53d },
+    { id:'services', x: 0.4,  y: 0.1,  s:0.7,  r: 0.1,  o:0.22, c:0x6fdcc0 },
+    { id:'order',    x:-0.4,  y: 0.1,  s:0.7,  r:-0.1,  o:0.18, c:0xffd35a },
+    { id:'visit',    x: 0,    y: 0,    s:0,    r: 0,    o:0.2,  c:0xff7aa2 }
+  ];
+  [KD, KM].forEach(set => set.forEach(k => { k.col = new THREE.Color(k.c); }));
+
+  let keys = KD, halfH = 1, halfW = 1, unit = 1, lastOpacity = -1;
+  const tmpCol = new THREE.Color();
+  const ease = u => u * u * (3 - 2 * u);
+
+  function resize(){
+    const w = window.innerWidth, h = window.innerHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h; camera.updateProjectionMatrix();
+    halfH = Math.tan(FOV * Math.PI / 360) * CAM_Z; halfW = halfH * camera.aspect;
+    const portrait = camera.aspect < 0.9;
+    keys = portrait ? KM : KD;
+    unit = Math.min(halfH * 2 * 0.6 / 4.3, halfW * 2 * (portrait ? 0.78 : 0.36) / 2.4);
+  }
+
+  function update(time, y){
+    const vh = window.innerHeight, center = y + vh * 0.5, W = vh * 0.9;
+    let cx = keys[0].x, cy = keys[0].y, cs = keys[0].s, cr = keys[0].r, co = keys[0].o, spin = 0;
+    tmpCol.copy(keys[0].col);
+    for (let i = 1; i < keys.length; i++){
+      const b = tops[keys[i].id]; if (b == null) continue;
+      let u = (center - (b - W / 2)) / W;
+      if (u <= 0) break;
+      u = ease(clamp(u, 0, 1));
+      const k = keys[i];
+      cx += (k.x - cx) * u; cy += (k.y - cy) * u; cs += (k.s - cs) * u; cr += (k.r - cr) * u; co += (k.o - co) * u;
+      tmpCol.lerp(k.col, u); spin += u;
+    }
+    ptr.x += (ptr.tx - ptr.x) * 0.05; ptr.y += (ptr.ty - ptr.y) * 0.05;
+    const idle = reduceMotion ? 0 : time;
+
+    shake.position.set(cx * halfW, cy * halfH + Math.sin(idle * 1.2) * 0.1, 0);
+    const sc = unit * cs;
+    shake.visible = sc > 0.03;
+    shake.scale.setScalar(Math.max(sc, 0.0001));
+    shake.rotation.set(ptr.y * 0.18, (reduceMotion ? 0 : spin * Math.PI * 2) + idle * 0.35 + ptr.x * 0.5 + y * 0.0006, cr + Math.sin(idle * 0.9) * 0.03);
+    liquidMat.color.copy(tmpCol);
+
+    const op = Math.round(co * 100) / 100;
+    if (op !== lastOpacity){ canvas.style.opacity = op; lastOpacity = op; }
+
+    camera.position.x = ptr.x * 0.25; camera.position.y = -ptr.y * 0.15; camera.lookAt(0, 0, 0);
+
+    const H = halfH * 2 * 1.5;
+    for (let i = 0; i < floaters.length; i++){
+      const f = floaters[i];
+      const yy = (((f.n * H + y * 0.0042 * f.sp) % H) + H) % H - H / 2 + Math.sin(idle * 0.8 + f.ph) * 0.12;
+      f.m.position.set(f.x * halfW * 1.1 + Math.sin(idle * 0.5 + f.ph) * 0.15, yy, f.z);
+      if (f.spr){ f.m.rotation.z = f.ph + idle * 0.6; f.m.rotation.x = f.ph * 2 + idle * 0.4; }
+    }
+    renderer.render(scene, camera);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  return { update, resize };
+}
+
+/* ---------- boot ---------- */
+buildDrum();
+renderTabs(); renderItems(); renderModes(); renderCart();
+renderHours(); updateStatus();
+$('#sendWa').addEventListener('click', sendOrder);
+$('#year').textContent = new Date().getFullYear();
+setInterval(updateStatus, 60000);
+
+measure(); layoutDrum(); measureMarquee();
+let scene3d = null;
+try { scene3d = initScene(); } catch (err) { scene3d = null; root.classList.add('no-webgl'); }
+
+function relayout(){ measure(); layoutDrum(); measureMarquee(); frame(performance.now()); }
+if ('ResizeObserver' in window) new ResizeObserver(() => { measure(); layoutDrum(); measureMarquee(); }).observe(document.body);
+window.addEventListener('resize', () => { measure(); layoutDrum(); measureMarquee(); });
+window.addEventListener('load', relayout);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+
+let rafId = 0;
+function frame(ms){
+  const y = window.scrollY, time = ms / 1000;
+  updateChrome(y);
+  updateMarquee(time, y);
+  updateDrum();
+  if (scene3d){
+    try { scene3d.update(time, y); }
+    catch (err) { scene3d = null; root.classList.add('no-webgl'); }
+  }
+}
+function loop(ms){
+  if (!document.hidden) frame(ms);
+  rafId = requestAnimationFrame(loop);
+}
+if (reduceMotion){
+  let pending = false;
+  const schedule = () => { if (pending) return; pending = true; requestAnimationFrame(() => { pending = false; frame(performance.now()); }); };
+  window.addEventListener('scroll', schedule, { passive:true });
+  window.addEventListener('resize', schedule);
+  schedule();
+} else {
+  rafId = requestAnimationFrame(loop);
+}
+})();
+</script>
+</body>
+</html>
